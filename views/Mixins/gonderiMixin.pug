@@ -1,0 +1,15 @@
+mixin gonderimixin(gonderi)
+    div(class=`gonderidisdiv ${gonderi.isDuyuru&& 'duyuru'}`)
+        .gkulbilgi 
+            .gkulimg 
+                img(src=(gonderi.userId.pfoto), alt="").gkulimgi
+            .gkulnick 
+                span(class=`gkulnickt gtext ${gonderi.userId.admin && 'admin'}`) #{gonderi.userId.kuladi}
+        .gbaslik 
+            span.ggonderibaslik.gtext #{gonderi.baslik}
+        .gicerik
+            span.ggonderiicerik.gtext #{gonderi.icerik}
+        if gonderi.resim != ""
+            .gresim
+                img(src=(gonderi.resim), alt="").ggonderiresim
+

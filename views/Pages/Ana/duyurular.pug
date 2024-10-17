@@ -1,0 +1,19 @@
+extends ../../Layouts/analayout.pug
+include ../../mixins/gonderiMixin.pug
+
+block styles
+    link(rel="stylesheet" href="/css/gonderiform.css")
+    link(rel="stylesheet" href="/css/gonderiler.css")
+
+block icerik 
+    .baslik
+        h1 Duyurular
+    hr
+    .icerik
+        .gonderiler
+            each gonderi in gonderiler
+                +gonderimixin(gonderi)
+            
+                
+
+

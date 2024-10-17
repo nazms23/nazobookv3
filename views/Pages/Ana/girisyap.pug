@@ -1,0 +1,23 @@
+extends ../../Layouts/analayout.pug
+
+block styles
+    link(rel="stylesheet" href="/css/girisislemleri.css")
+
+block icerik 
+    .baslik
+        h1 Giriş Yap
+    hr
+    .icerik
+        if(hata)
+            span.ghata #{hata}
+        form(action="/girisyap" method="post").gform
+            .bolme
+                span.gtext Kullanıcı Adı
+                input(type="text" name="kuladi" value=(bilgiler?bilgiler.kadi:'')).ginput.gtext
+            .bolme 
+                span.gtext Şifre
+                input(type="password" name="sifre").ginput.gtext
+            .bolme
+                input(type="hidden" name="_csrf" value=(csrfToken))
+
+                input(type="submit").ginput.gtext

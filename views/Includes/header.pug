@@ -1,0 +1,16 @@
+.header
+    .logo
+        img(src="/img/NazoBook.png", alt="").logor
+    .nav 
+        .linkdiv
+            a(href="/").link Anasayfa
+            a(href="/duyurular").link Duyurular
+
+        .kullinkdiv
+            if girisyapili
+                a(href="/hesap/gonderiler").link Gönderilerim
+                a(href="/hesap/").link Hesabım
+                a(href="/cikisyap").link Çıkış Yap
+            else 
+                a(href="/girisyap").link Giriş Yap
+                a(href="/kayitol").link Kayıt Ol

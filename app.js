@@ -5,15 +5,18 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const session = require('express-session')
 const mongoDbStore = require('connect-mongodb-session')(session)
-const csurf = require('csurf');
+//const csurf = require('csurf');
 const ortak = require('./middleware/ortak')
 const app = express();
 
 //! Veritabanı Modeller
 // const model = require("./models/model");  -- ÖRN
+const kullaniciModel = require('./models/kullaniciModel');
 
 //! Routes
 //const route = require('./routes/route'); -- ÖRN
+const anaRoute = require('./routes/ana');
+const kullanciRoute = require('./routes/kullanici');
 
 
 
@@ -32,7 +35,7 @@ app.use(session({
         collection:'mySessions'
     })
 }))
-app.use(csurf());
+//app.use(csurf());
 app.use((req,res,next)=>{   //? KULLANICI İŞLEMLERİ
 
     if(!req.session.user)
@@ -41,7 +44,7 @@ app.use((req,res,next)=>{   //? KULLANICI İŞLEMLERİ
     }
 
 
-    User.findById(req.session.user._id)
+    kullaniciModel.findById(req.session.user._id)
     .then((user) => {
         req.user = user
         next()
@@ -53,11 +56,13 @@ app.use(ortak)
 //! Routes Use
 //app.use('/isim',route); -- ÖRN Uzantılı
 //app.use(route); -- ÖRN Normal
+app.use('/hesap',kullanciRoute);
+app.use(anaRoute);
 
 
 //404 Bulunamadı
 app.use((req,res)=>{
-    res.status(404).render('error/404',{title:'Sayfa Bulunamadı'});
+    res.status(404).render('Pages/Error/404',{title:'Sayfa Bulunamadı'});
 })
 
 

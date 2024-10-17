@@ -1,0 +1,40 @@
+extends ../../Layouts/analayout.pug
+include ../../mixins/gonderiMixin.pug
+
+block styles
+    link(rel="stylesheet" href="/css/gonderiform.css")
+    link(rel="stylesheet" href="/css/gonderiler.css")
+
+block icerik 
+    .baslik
+        h1 Anasayfa
+    hr
+    .icerik
+        if girisyapili
+            if(hata)
+                span.ghata #{hata}
+            .gonderiform
+                form(action="/" method="POST" enctype="multipart/form-data").formgonderi
+                    .formbolme
+                        span.inptext Başlık 
+                        input(type="text" name="baslik" value=(bilgiler?bilgiler.baslik:'')).inpgonderi 
+                    .formbolme
+                        span.inptext İçerik 
+                        textarea(name="icerik" value=(bilgiler?bilgiler.icerik:'')).inpgonderi
+                    .formbolme
+                        span.inptext Resim
+                        input(type="file" name="gonderiresim").inpgonderi
+                    if admin
+                        .formbolme
+                            span.inptext Duyuru
+                            input(type="checkbox" name="isDuyuru").inpgonderi
+                    .formbolme
+                        input(type="submit").inpgonderi
+        hr(style="width:100%;")
+        .gonderiler
+            each gonderi in gonderiler
+                +gonderimixin(gonderi)
+            
+                
+
+
