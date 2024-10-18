@@ -1,0 +1,35 @@
+extends ../../Layouts/analayout.pug
+
+block styles
+    link(rel="stylesheet" href="/css/hesabim.css")
+
+block icerik 
+    .baslik
+        h1 Hesabım
+    hr
+    .icerik2.icerik
+        .bilgiler
+            .profilfoto
+                img(src=(user.pfoto == '/img/bospp.jpg' ? user.pfoto : '/kresim/'+user.kuladi+'/'+user.pfoto), alt="").resim
+            .bilgiler
+                span.bilgiyazi #{user.kuladi}   
+        .ayarlar
+            if hata
+                span.bilgiyazi(style="color:red;") #{hata}
+            form(action="/hesap/" method="POST" enctype="multipart/form-data")
+                .ayarbolme
+                    span.formyazi Kullanıcı Adı
+                    input(type="text" name="kuladi" value=(bilgiler?bilgiler.kuladi:"")).formyazi
+                .ayarbolme
+                    span.formyazi Yeni Şifre
+                    input(type="password" name="yenisifre").formyazi
+                .ayarbolme
+                    span.formyazi Resim
+                    input(type="file" name="kulresim")
+                .ayarbolme
+                    span.formyazi Şifre*
+                    input(type="password" name="sifre").formyazi
+                .ayarbolme
+                    input(type="submit").formyazi
+
+

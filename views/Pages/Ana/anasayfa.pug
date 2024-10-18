@@ -16,10 +16,10 @@ block icerik
             .gonderiform
                 form(action="/" method="POST" enctype="multipart/form-data").formgonderi
                     .formbolme
-                        span.inptext Başlık 
+                        span.inptext Başlık*
                         input(type="text" name="baslik" value=(bilgiler?bilgiler.baslik:'')).inpgonderi 
                     .formbolme
-                        span.inptext İçerik 
+                        span.inptext İçerik*
                         textarea(name="icerik" value=(bilgiler?bilgiler.icerik:'')).inpgonderi
                     .formbolme
                         span.inptext Resim

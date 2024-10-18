@@ -2,7 +2,7 @@ mixin gonderimixin(gonderi)
     div(class=`gonderidisdiv ${gonderi.isDuyuru&& 'duyuru'}`)
         .gkulbilgi 
             .gkulimg 
-                img(src=(gonderi.userId.pfoto), alt="").gkulimgi
+                img(src=(gonderi.userId.pfoto == '/img/bospp.jpg' ? gonderi.userId.pfoto : '/kresim/'+gonderi.userId.kuladi+'/'+gonderi.userId.pfoto), alt="").gkulimgi
             .gkulnick 
                 span(class=`gkulnickt gtext ${gonderi.userId.admin && 'admin'}`) #{gonderi.userId.kuladi}
         .gbaslik 

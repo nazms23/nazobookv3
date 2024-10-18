@@ -1,17 +1,15 @@
 module.exports.isGirisYapti = (req,res,next)=>{
-    /* if(!req.session.isAuthenticated)
+    if(!req.user)
     {
-        req.session.redirectTo = req.url
-        return res.redirect('/login')
-    } */
+        return res.redirect('/girisyap')
+    }
     next()
 }
 
 module.exports.isAdmin = (req,res,next)=>{
-    /* if(!req.session.isAuthenticated)
+    if(!req.user || !req.user.admin)
     {
-        req.session.redirectTo = req.url
-        return res.redirect('/login')
-    } */
+        return res.redirect('/girisyap')
+    }
     next()
 }

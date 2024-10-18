@@ -3,12 +3,13 @@ const router = express.Router();
 
 //! Controllerler
 //const controller = require('../controllers/controller'); örn
-const {getGonderilerim} = require('../controllers/kullaniciController')
+const {getHesabim,postAyarlar,getGonderilerim} = require('../controllers/kullaniciController');
 
 //! Middlewareler
 //const mw = require('../middleware/mw') örn
-
-
+const { isGirisYapti,isAdmin } = require("../middleware/girisbilgi");
+const { post,kullaniciresim } = require("../middleware/form");
+const { kulresimsil } = require("../middleware/diger");
 
 //! Routes
 //router.get('/link',(middleware),controller); get örn
@@ -16,7 +17,9 @@ const {getGonderilerim} = require('../controllers/kullaniciController')
 //router.get('/:degisken',(middleware).controller); değişkenli get
 
 
-router.get('/gonderiler',getGonderilerim)
+router.get('/',isGirisYapti,getHesabim)
+router.post('/',isGirisYapti,kullaniciresim,kulresimsil,postAyarlar)
+router.get('/gonderiler',isGirisYapti,getGonderilerim)
 
 
 
